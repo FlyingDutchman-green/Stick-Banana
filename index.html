@@ -1,0 +1,2595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <meta name="description" content="Nikmati Stick Banana dengan berbagai pilihan topping premium. Oreo Crumble, Kacang Almond, Keju, dan banyak lagi. Follow kami di @stick.banana.official">
+  
+  <meta name="google-site-verification" content="t1O6r-sF5sAmoYaLi4nvmCLu8BhBuJeh_zFFNhONgWA" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="/favicon-stickbanana.svg">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stick-banana.vercel.app/">
+  <meta property="og:title" content="Stick Banana - Camilan Premium dengan Topping Favoritmu">
+  <meta property="og:description" content="Nikmati Stick Banana dengan berbagai pilihan topping premium. Oreo Crumble, Kacang Almond, Keju, dan banyak lagi. Follow kami di @stick.banana.official">
+  <meta property="og:image" content="/images/hero-stickbanana.jpg">
+  <meta property="og:site_name" content="Stick Banana">
+  <meta name="application-name" content="Stick Banana">
+  <meta name="apple-mobile-web-app-title" content="Stick Banana">
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://stick-banana.vercel.app/">
+  <meta property="twitter:title" content="Stick Banana - Camilan Premium dengan Topping Favoritmu">
+  <meta property="twitter:description" content="Nikmati Stick Banana dengan berbagai pilihan topping premium. Oreo Crumble, Kacang Almond, Keju, dan banyak lagi. Follow kami di @stick.banana.official">
+  <meta property="twitter:image" content="/images/hero-stickbanana.jpg">
+
+  <title>Stick Banana - Camilan Premium dengan Topping Favoritmu</title>
+
+  <!-- Preload Hero Image -->
+  <link rel="preload" as="image" href="/images/hero-stickbanana.jpg" fetchpriority="high">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ===== DESIGN TOKENS ===== */
+    :root {
+      --color-primary: #3E2723;
+      --color-secondary: #6D4C41;
+      --color-accent: #FFD54F;
+      --color-accent-dark: #F9A825;
+      --color-cream: #FFF9F2;
+      --color-white: #FFFFFF;
+      --color-text-primary: #222222;
+      --color-text-secondary: #666666;
+      --color-border: rgba(62, 39, 35, 0.1);
+      
+      --font-heading: 'Baloo 2', cursive, sans-serif;
+      --font-body: 'Poppins', sans-serif;
+      
+      --shadow-xs: 0 1px 2px rgba(62, 39, 35, 0.04);
+      --shadow-sm: 0 2px 8px rgba(62, 39, 35, 0.06);
+      --shadow-md: 0 4px 20px rgba(62, 39, 35, 0.08);
+      --shadow-lg: 0 12px 48px rgba(62, 39, 35, 0.12);
+      --shadow-xl: 0 24px 64px rgba(62, 39, 35, 0.16);
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 28px;
+      --radius-2xl: 36px;
+      --radius-full: 9999px;
+      
+      --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+      --ease-smooth: cubic-bezier(0.65, 0, 0.35, 1);
+      
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --duration-medium: 400ms;
+      --duration-slow: 600ms;
+      --duration-slower: 800ms;
+      --duration-slowest: 1200ms;
+      
+      --touch-target: 44px;
+    }
+
+    /* ===== BASE STYLES ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { 
+      scroll-behavior: smooth; 
+      background-color: var(--color-cream); 
+      color: var(--color-text-primary); 
+      font-family: var(--font-body); 
+      font-size: 16px; 
+      line-height: 1.6; 
+      -webkit-font-smoothing: antialiased;
+      -webkit-text-size-adjust: 100%;
+    }
+    body { 
+      overflow-x: hidden; 
+      min-height: 100dvh;
+    }
+    img { 
+      max-width: 100%; 
+      display: block; 
+      height: auto; 
+    }
+    button, input { 
+      font-family: inherit; 
+      font-size: 1rem;
+    }
+    a { 
+      text-decoration: none; 
+      color: inherit; 
+    }
+    :focus-visible { 
+      outline: 3px solid var(--color-primary); 
+      outline-offset: 4px; 
+    }
+
+    /* ===== SCROLL ANIMATION ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s var(--ease-out), transform 0.8s var(--ease-out);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== BUTTONS ===== */
+    .sb-btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+      border: none;
+      cursor: pointer;
+      overflow: hidden;
+      transition: transform var(--duration-normal) var(--ease-spring), box-shadow var(--duration-normal) var(--ease-smooth), background var(--duration-normal) var(--ease-smooth);
+      min-width: var(--touch-target);
+      min-height: var(--touch-target);
+      text-align: center;
+      touch-action: manipulation;
+    }
+    .sb-btn--sm { 
+      padding: 8px 14px; 
+      font-size: 0.8rem; 
+      min-width: auto; 
+      min-height: 36px; 
+    }
+    .sb-btn--primary { background-color: var(--color-primary); color: var(--color-white); }
+    .sb-btn--primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .sb-btn--accent { background-color: var(--color-accent); color: var(--color-primary); }
+    .sb-btn--accent:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+    .sb-btn--outline { background-color: transparent; border: 2px solid var(--color-primary); color: var(--color-primary); }
+    .sb-btn--outline:hover { background-color: rgba(62, 39, 35, 0.05); transform: translateY(-3px); }
+    .sb-btn--whatsapp { background-color: #25D366; color: white; }
+    .sb-btn--whatsapp:hover { transform: translateY(-3px); box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35); }
+    .sb-btn--coming-soon { opacity: 0.75; cursor: not-allowed !important; }
+    .sb-btn--coming-soon:hover { transform: none !important; box-shadow: none !important; }
+    .sb-btn--delivery { background: linear-gradient(135deg, #00B14F, #008C3D); color: white; }
+    .sb-btn--delivery:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(0, 177, 79, 0.35); }
+    .sb-btn--delivery-shopee { background: linear-gradient(135deg, #EE4D2D, #C93A1E); color: white; }
+    .sb-btn--delivery-shopee:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(238, 77, 45, 0.35); }
+    .sb-btn svg { flex-shrink: 0; }
+
+    .sb-ripple {
+      position: absolute;
+      border-radius: 50%;
+      transform: scale(0);
+      animation: ripple-animation var(--duration-slow) var(--ease-out);
+      background-color: rgba(255, 255, 255, 0.35);
+      pointer-events: none;
+    }
+    @keyframes ripple-animation {
+      to { transform: scale(4); opacity: 0; }
+    }
+
+    .sb-section-lazy { content-visibility: auto; contain-intrinsic-size: 0 600px; }
+
+    .sb-section {
+      position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: transform var(--duration-slow) var(--ease-out), opacity var(--duration-slow) var(--ease-out);
+      will-change: transform, opacity;
+    }
+    .sb-section.sb-visible { opacity: 1; transform: translateY(0); }
+
+    .sb-drip {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      height: clamp(30px, 6vw, 80px);
+      z-index: 10;
+      pointer-events: none;
+      transform: translateY(-100%);
+      opacity: 0;
+      will-change: transform, opacity;
+      transition: transform var(--duration-slowest) var(--ease-spring), opacity var(--duration-slowest) var(--ease-spring);
+    }
+    .sb-section--visible .sb-drip { transform: translateY(0); opacity: 1; }
+
+    /* ===== NAVBAR ===== */
+    .sb-navbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 14px 4%;
+      background: rgba(255, 249, 242, 0.35);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(62, 39, 35, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: padding var(--duration-normal) var(--ease-smooth), background var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
+    }
+    .sb-navbar--scrolled { 
+      padding: 10px 4%; 
+      background: rgba(255, 249, 242, 0.92); 
+      box-shadow: var(--shadow-sm); 
+      border-bottom-color: var(--color-border); 
+    }
+    .sb-navbar__logo { display: flex; align-items: center; gap: 8px; flex-shrink: 0; }
+    .sb-logo { height: 32px; width: auto; }
+    .sb-navbar__menu { 
+      display: flex; 
+      list-style: none; 
+      gap: 16px; 
+      align-items: center; 
+    }
+    .sb-navbar__link { 
+      font-size: clamp(0.75rem, 2vw, 0.9rem); 
+      font-weight: 500; 
+      color: var(--color-primary); 
+      opacity: 0.8; 
+      transition: opacity var(--duration-fast) var(--ease-smooth); 
+      padding: 6px 10px; 
+      position: relative; 
+      white-space: nowrap;
+      min-height: var(--touch-target);
+      display: inline-flex;
+      align-items: center;
+    }
+    .sb-navbar__link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 60%;
+      height: 2px;
+      background: var(--color-accent);
+      transition: transform var(--duration-normal) var(--ease-smooth);
+    }
+    .sb-navbar__link:hover { opacity: 1; }
+    .sb-navbar__link:hover::after { transform: translateX(-50%) scaleX(1); }
+
+    /* ===== HAMBURGER TOGGLE ===== */
+    .sb-navbar__toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 24px;
+      height: 24px;
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 105;
+      position: relative;
+      min-height: 44px;
+      min-width: 44px;
+      align-items: center;
+      justify-content: center;
+      touch-action: manipulation;
+      transition: transform var(--duration-normal) var(--ease-spring);
+    }
+    .sb-navbar__toggle:hover { transform: scale(1.05); }
+    .sb-navbar__toggle:active { transform: scale(0.95); }
+    .sb-navbar__bars {
+      position: relative;
+      width: 24px;
+      height: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      transition: all var(--duration-normal) var(--ease-spring);
+    }
+    .sb-navbar__bar {
+      display: block;
+      width: 100%;
+      height: 2.5px;
+      background-color: var(--color-primary);
+      border-radius: var(--radius-sm);
+      transform-origin: center;
+      transition: all var(--duration-normal) var(--ease-spring);
+      will-change: transform, opacity;
+    }
+    .sb-navbar__toggle--open .sb-navbar__bars { width: 24px; }
+    .sb-navbar__toggle--open .sb-navbar__bar:nth-child(1) { transform: translateY(7.75px) rotate(45deg); }
+    .sb-navbar__toggle--open .sb-navbar__bar:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .sb-navbar__toggle--open .sb-navbar__bar:nth-child(3) { transform: translateY(-7.75px) rotate(-45deg); }
+
+    /* ===== HERO ===== */
+    .sb-hero {
+      min-height: 100dvh;
+      display: flex;
+      align-items: center;
+      padding: 100px 4% 40px;
+      position: relative;
+      background: var(--color-cream);
+      overflow: hidden;
+    }
+    .sb-hero::before {
+      content: '';
+      position: absolute;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(255, 213, 79, 0.08) 0%, transparent 70%);
+      border-radius: 50%;
+      top: -100px;
+      right: -50px;
+      animation: blob-float 10s ease-in-out infinite;
+    }
+    .sb-hero::after {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(109, 76, 65, 0.05) 0%, transparent 70%);
+      border-radius: 50%;
+      bottom: -50px;
+      left: -50px;
+      animation: blob-float 8s ease-in-out infinite reverse;
+    }
+    @keyframes blob-float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      50% { transform: translate(-20px, 20px) scale(1.1); }
+    }
+
+    .sb-hero__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      width: 100%;
+      max-width: 1300px;
+      margin: 0 auto;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+    .sb-hero__content { 
+      display: flex; 
+      flex-direction: column; 
+      gap: 16px; 
+      text-align: center;
+      align-items: center;
+    }
+    .sb-hero__tagline {
+      font-size: clamp(0.7rem, 2vw, 0.85rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-secondary);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: hero-fade-up var(--duration-slow) var(--ease-out) forwards;
+    }
+    .sb-hero__title {
+      font-family: var(--font-heading);
+      font-size: clamp(2.2rem, 7vw, 4.2rem);
+      line-height: 1.1;
+      color: var(--color-primary);
+      font-weight: 800;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: hero-fade-up var(--duration-slow) var(--ease-out) 150ms forwards;
+    }
+    .sb-hero__title span { color: var(--color-accent-dark); }
+    .sb-hero__desc {
+      font-size: clamp(0.9rem, 2.5vw, 1.1rem);
+      color: var(--color-text-secondary);
+      max-width: 100%;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: hero-fade-up var(--duration-slow) var(--ease-out) 300ms forwards;
+    }
+    .sb-hero__actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: hero-fade-up var(--duration-slow) var(--ease-out) 450ms forwards;
+    }
+    .sb-hero__delivery {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+      justify-content: center;
+      opacity: 0;
+      transform: translateY(30px);
+      animation: hero-fade-up var(--duration-slow) var(--ease-out) 600ms forwards;
+    }
+    .sb-hero__image-container { 
+      display: flex; 
+      justify-content: center; 
+      align-items: center; 
+      position: relative; 
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    .sb-hero__image {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius-2xl);
+      box-shadow: var(--shadow-xl);
+      border: 1px solid var(--color-border);
+      opacity: 0;
+      transform: translateY(50px) scale(0.95);
+      will-change: transform, opacity;
+      animation: hero-image-rise var(--duration-slower) var(--ease-spring) 300ms forwards;
+    }
+    @keyframes hero-fade-up { to { opacity: 1; transform: translateY(0); } }
+    @keyframes hero-image-rise { to { opacity: 1; transform: translateY(0) scale(1); } }
+
+    .sb-hero__floating-badge {
+      position: absolute;
+      background: var(--color-white);
+      padding: 8px 14px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-lg);
+      font-size: clamp(0.65rem, 1.5vw, 0.8rem);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      animation: float-badge 3s ease-in-out infinite;
+      z-index: 2;
+      white-space: nowrap;
+    }
+    .sb-hero__floating-badge--1 { top: 5%; right: 0%; animation-delay: 0s; }
+    .sb-hero__floating-badge--2 { bottom: 10%; left: 0%; animation-delay: 1.5s; }
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+
+    /* ===== SECTION HEADER ===== */
+    .sb-section-header {
+      text-align: center;
+      margin-bottom: 40px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 0 4%;
+    }
+    .sb-section-header__tag {
+      font-size: clamp(0.7rem, 2vw, 0.85rem);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-secondary);
+      margin-bottom: 6px;
+      display: block;
+    }
+    .sb-section-header__title {
+      font-family: var(--font-heading);
+      font-size: clamp(1.6rem, 5vw, 2.8rem);
+      color: var(--color-primary);
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .sb-section-header__line {
+      width: 50px;
+      height: 3px;
+      background: var(--color-accent);
+      margin: 10px auto 0;
+      border-radius: 999px;
+    }
+    .sb-section-header__sub {
+      color: var(--color-text-secondary);
+      font-size: clamp(0.85rem, 2vw, 1rem);
+      margin-top: 10px;
+    }
+
+    .sb-best-seller { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-white); 
+    }
+    .sb-best-seller__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    /* ===== PRODUCT CARD ===== */
+    .sb-product-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-smooth), opacity var(--duration-normal) var(--ease-out);
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: transform, opacity;
+      min-height: 320px;
+    }
+    .sb-section--visible .sb-product-card {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .sb-product-card:nth-child(1) { transition-delay: 0ms; }
+    .sb-product-card:nth-child(2) { transition-delay: 60ms; }
+    .sb-product-card:nth-child(3) { transition-delay: 120ms; }
+    .sb-product-card:nth-child(4) { transition-delay: 180ms; }
+    .sb-product-card:nth-child(5) { transition-delay: 240ms; }
+    .sb-product-card:nth-child(6) { transition-delay: 300ms; }
+    .sb-product-card:nth-child(7) { transition-delay: 360ms; }
+    .sb-product-card:nth-child(8) { transition-delay: 420ms; }
+    .sb-product-card:nth-child(9) { transition-delay: 480ms; }
+    .sb-product-card:nth-child(10) { transition-delay: 540ms; }
+
+    .sb-product-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .sb-product-card__image-wrapper {
+      position: relative;
+      width: 100%;
+      padding-top: 100%;
+      overflow: hidden;
+      background: rgba(62, 39, 35, 0.02);
+    }
+    .sb-product-card__image-wrapper::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.8s ease;
+      pointer-events: none;
+    }
+    .sb-product-card:hover .sb-product-card__image-wrapper::after { left: 100%; }
+
+    .sb-product-card__image {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform var(--duration-medium) var(--ease-smooth);
+    }
+    .sb-product-card:hover .sb-product-card__image { transform: scale(1.08); }
+
+    .sb-product-card__badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+      color: var(--color-primary);
+      padding: 3px 12px;
+      font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      box-shadow: 0 4px 15px rgba(255, 213, 79, 0.3);
+      z-index: 2;
+    }
+    .sb-product-card__badge--special {
+      background: linear-gradient(135deg, var(--color-primary), #5D4037);
+      color: var(--color-white);
+      box-shadow: 0 4px 15px rgba(62, 39, 35, 0.3);
+    }
+
+    .sb-product-card__content { 
+      padding: 14px 16px 16px; 
+      display: flex; 
+      flex-direction: column; 
+      flex-grow: 1; 
+    }
+    .sb-product-card__category { 
+      font-size: clamp(0.6rem, 1.5vw, 0.7rem); 
+      text-transform: uppercase; 
+      font-weight: 600; 
+      color: var(--color-secondary); 
+      letter-spacing: 1px; 
+      margin-bottom: 2px; 
+    }
+    .sb-product-card__title { 
+      font-family: var(--font-heading); 
+      font-size: clamp(0.85rem, 2.5vw, 1.05rem); 
+      font-weight: 700; 
+      color: var(--color-primary); 
+      line-height: 1.3; 
+      margin-bottom: 4px; 
+      min-height: 40px;
+    }
+    .sb-product-card__pasta-select {
+      margin: 6px 0 10px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+    .sb-product-card__pasta-btn {
+      padding: 3px 10px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background: var(--color-white);
+      font-size: clamp(0.6rem, 1.5vw, 0.7rem);
+      font-weight: 500;
+      color: var(--color-text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-smooth);
+      min-height: 28px;
+      touch-action: manipulation;
+    }
+    .sb-product-card__pasta-btn:hover { border-color: var(--color-primary); color: var(--color-primary); }
+    .sb-product-card__pasta-btn.active {
+      background: var(--color-primary);
+      color: var(--color-white);
+      border-color: var(--color-primary);
+    }
+    .sb-product-card__footer { 
+      display: flex; 
+      justify-content: space-between; 
+      align-items: center; 
+      margin-top: auto; 
+      padding-top: 12px; 
+      border-top: 1px solid var(--color-border); 
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .sb-product-card__price { 
+      font-size: clamp(0.95rem, 2.5vw, 1.1rem); 
+      font-weight: 700; 
+      color: var(--color-primary); 
+    }
+
+    /* ===== MENU SECTION ===== */
+    .sb-menu { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-cream); 
+    }
+    .sb-menu__controls { 
+      display: flex; 
+      flex-direction: column; 
+      align-items: center; 
+      gap: 16px; 
+      margin-bottom: 32px; 
+    }
+    .sb-menu__search-container { 
+      width: 100%; 
+      max-width: 400px; 
+      position: relative; 
+    }
+    .sb-menu__search {
+      width: 100%;
+      padding: 12px 16px 12px 44px;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-full);
+      background-color: var(--color-white);
+      color: var(--color-primary);
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      transition: border-color var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
+      min-height: var(--touch-target);
+    }
+    .sb-menu__search:focus { 
+      outline: none; 
+      border-color: var(--color-primary); 
+      box-shadow: var(--shadow-sm); 
+    }
+    .sb-menu__search-icon {
+      position: absolute;
+      left: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      pointer-events: none;
+      color: var(--color-secondary);
+    }
+    .sb-menu__filters { 
+      display: flex; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      gap: 8px; 
+    }
+    .sb-menu__filter-chip {
+      background-color: var(--color-white);
+      border: 1px solid var(--color-border);
+      color: var(--color-primary);
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      font-weight: 500;
+      font-size: clamp(0.75rem, 2vw, 0.85rem);
+      cursor: pointer;
+      transition: all var(--duration-normal) var(--ease-smooth);
+      min-height: var(--touch-target);
+      touch-action: manipulation;
+    }
+    .sb-menu__filter-chip:hover { background-color: rgba(62, 39, 35, 0.04); transform: scale(1.04); }
+    .sb-menu__filter-chip--active { background-color: var(--color-primary); border-color: var(--color-primary); color: var(--color-white); }
+    .sb-menu__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: 20px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+    .sb-product-card--hidden { display: none !important; }
+    .sb-menu__empty-state { 
+      display: none; 
+      grid-column: 1 / -1; 
+      text-align: center; 
+      padding: 40px 20px; 
+      color: var(--color-text-secondary); 
+      font-size: 1.1rem; 
+    }
+    .sb-menu__empty-state--visible { display: block; }
+
+    /* ===== SKELETON LOADING ===== */
+    .sb-product-card-skeleton {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      height: 100%;
+      min-height: 320px;
+    }
+    .sb-product-card-skeleton__image {
+      width: 100%;
+      padding-top: 100%;
+      background: linear-gradient(90deg, #F3EFEA 25%, #EAE4DC 50%, #F3EFEA 75%);
+      background-size: 200% 100%;
+      animation: sb-shimmer 1.5s infinite linear;
+    }
+    .sb-product-card-skeleton__content { padding: 16px; display: flex; flex-direction: column; gap: 12px; flex-grow: 1; }
+    .sb-product-card-skeleton__category {
+      width: 40%;
+      height: 10px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #F3EFEA 25%, #EAE4DC 50%, #F3EFEA 75%);
+      background-size: 200% 100%;
+      animation: sb-shimmer 1.5s infinite linear;
+    }
+    .sb-product-card-skeleton__title {
+      width: 85%;
+      height: 18px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #F3EFEA 25%, #EAE4DC 50%, #F3EFEA 75%);
+      background-size: 200% 100%;
+      animation: sb-shimmer 1.5s infinite linear;
+    }
+    .sb-product-card-skeleton__footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: auto;
+      padding-top: 12px;
+      border-top: 1px solid rgba(62, 39, 35, 0.05);
+    }
+    .sb-product-card-skeleton__price {
+      width: 30%;
+      height: 16px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #F3EFEA 25%, #EAE4DC 50%, #F3EFEA 75%);
+      background-size: 200% 100%;
+      animation: sb-shimmer 1.5s infinite linear;
+    }
+    .sb-product-card-skeleton__btn {
+      width: 70px;
+      height: 32px;
+      border-radius: var(--radius-full);
+      background: linear-gradient(90deg, #F3EFEA 25%, #EAE4DC 50%, #F3EFEA 75%);
+      background-size: 200% 100%;
+      animation: sb-shimmer 1.5s infinite linear;
+    }
+    @keyframes sb-shimmer {
+      0% { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* ===== WHY CHOOSE US ===== */
+    .sb-why-us { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-white); 
+    }
+    .sb-why-us__grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+      gap: 24px; 
+      max-width: 1300px; 
+      margin: 0 auto; 
+    }
+    .sb-why-us__card {
+      background: var(--color-cream);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: 32px 20px;
+      text-align: center;
+      transition: transform var(--duration-medium) var(--ease-spring), box-shadow var(--duration-medium) var(--ease-smooth);
+      box-shadow: var(--shadow-sm);
+    }
+    .sb-why-us__card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
+    .sb-why-us__icon {
+      font-size: 2rem;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+      border-radius: var(--radius-md);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 15px rgba(255, 213, 79, 0.25);
+    }
+    .sb-why-us__title { 
+      font-family: var(--font-heading); 
+      font-size: clamp(1.1rem, 3vw, 1.35rem); 
+      font-weight: 700; 
+      color: var(--color-primary); 
+      margin-bottom: 8px; 
+    }
+    .sb-why-us__desc { 
+      font-size: clamp(0.85rem, 2vw, 0.95rem); 
+      color: var(--color-text-secondary); 
+    }
+
+    /* ===== REVIEWS ===== */
+    .sb-reviews { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-cream); 
+    }
+    .sb-reviews__slider-wrapper { 
+      position: relative; 
+      max-width: 1300px; 
+      margin: 0 auto; 
+      overflow: hidden; 
+    }
+    .sb-reviews__slider {
+      display: flex;
+      gap: 16px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 12px 4px;
+      cursor: grab;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .sb-reviews__slider::-webkit-scrollbar { display: none; }
+    .sb-reviews__slider--active { cursor: grabbing; }
+    .sb-reviews__card {
+      flex: 0 0 85%;
+      scroll-snap-align: start;
+      background: var(--color-white);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--color-border);
+      padding: 24px 20px;
+      box-shadow: var(--shadow-sm);
+      transition: transform var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
+    }
+    .sb-reviews__rating { 
+      color: var(--color-accent-dark); 
+      font-size: 1rem; 
+      margin-bottom: 12px; 
+      letter-spacing: 1px; 
+    }
+    .sb-reviews__text { 
+      font-size: clamp(0.9rem, 2vw, 1.05rem); 
+      font-style: italic; 
+      color: var(--color-text-primary); 
+      margin-bottom: 16px; 
+      font-weight: 400; 
+    }
+    .sb-reviews__name { 
+      font-weight: 700; 
+      color: var(--color-primary); 
+      font-size: clamp(0.85rem, 2vw, 0.95rem); 
+    }
+
+    /* ===== GALLERY ===== */
+    .sb-gallery { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-white); 
+    }
+    .sb-gallery__follow-card {
+      max-width: 500px;
+      margin: 0 auto;
+      background: var(--color-cream);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-2xl);
+      padding: 40px 24px;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      transition: transform var(--duration-medium) var(--ease-spring), box-shadow var(--duration-medium) var(--ease-smooth);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .sb-gallery__follow-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+    .sb-gallery__insta-icon {
+      width: 60px;
+      height: 60px;
+      color: var(--color-primary);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-accent-dark));
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sm);
+      font-size: 1.8rem;
+    }
+    .sb-gallery__username { 
+      font-family: var(--font-heading); 
+      font-size: clamp(1.5rem, 4vw, 2rem); 
+      font-weight: 800; 
+      color: var(--color-primary); 
+      line-height: 1.2; 
+    }
+    .sb-gallery__insta-text { 
+      color: var(--color-text-secondary); 
+      font-size: clamp(0.85rem, 2vw, 1rem); 
+      max-width: 400px; 
+    }
+
+    /* ===== FAQ ===== */
+    .sb-faq { 
+      padding: 80px 4% 60px; 
+      background-color: var(--color-cream); 
+    }
+    .sb-faq__accordion { 
+      max-width: 760px; 
+      margin: 0 auto; 
+      display: flex; 
+      flex-direction: column; 
+      gap: 12px; 
+    }
+    .sb-faq__item {
+      background: var(--color-white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      transition: transform var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
+    }
+    .sb-faq__item:hover { box-shadow: var(--shadow-sm); }
+    .sb-faq__trigger {
+      width: 100%;
+      padding: 16px 20px;
+      background: transparent;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      text-align: left;
+      color: var(--color-primary);
+      min-height: var(--touch-target);
+      touch-action: manipulation;
+      gap: 12px;
+    }
+    .sb-faq__question { 
+      font-weight: 700; 
+      font-size: clamp(0.9rem, 2vw, 1.05rem); 
+      font-family: var(--font-heading); 
+    }
+    .sb-faq__icon { 
+      color: var(--color-secondary); 
+      transition: transform var(--duration-medium) var(--ease-spring); 
+      flex-shrink: 0;
+    }
+    .sb-faq__panel { 
+      display: grid; 
+      grid-template-rows: 0fr; 
+      transition: grid-template-rows var(--duration-medium) var(--ease-smooth); 
+      overflow: hidden; 
+    }
+    .sb-faq__item--open .sb-faq__panel { grid-template-rows: 1fr; }
+    .sb-faq__item--open .sb-faq__icon { transform: rotate(180deg); }
+    .sb-faq__answer { 
+      min-height: 0; 
+      padding: 0 20px 16px; 
+      font-size: clamp(0.85rem, 2vw, 0.95rem); 
+      color: var(--color-text-secondary); 
+    }
+
+    /* ===== CTA ===== */
+    .sb-cta { 
+      padding: 60px 4%; 
+      background-color: var(--color-cream); 
+    }
+    .sb-cta__banner {
+      max-width: 1100px;
+      margin: 0 auto;
+      background: linear-gradient(135deg, var(--color-primary), #5D4037);
+      border-radius: var(--radius-2xl);
+      padding: 50px 24px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-xl);
+    }
+    .sb-cta__banner::before {
+      content: '';
+      position: absolute;
+      top: -30%;
+      right: -10%;
+      width: 60%;
+      height: 160%;
+      background: radial-gradient(circle, rgba(255,213,79,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sb-cta__banner::after {
+      content: '';
+      position: absolute;
+      bottom: -20%;
+      left: -10%;
+      width: 40%;
+      height: 120%;
+      background: radial-gradient(circle, rgba(255,213,79,0.05) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .sb-cta__content {
+      position: relative;
+      z-index: 2;
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .sb-cta__title { 
+      font-family: var(--font-heading); 
+      font-size: clamp(1.8rem, 5vw, 3rem); 
+      font-weight: 800; 
+      line-height: 1.15; 
+      color: var(--color-accent); 
+    }
+    .sb-cta__desc { 
+      color: rgba(255, 249, 242, 0.85); 
+      font-size: clamp(0.9rem, 2vw, 1.05rem); 
+      margin-bottom: 8px; 
+    }
+    .sb-cta__delivery {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    /* ===== FOOTER ===== */
+    .sb-footer {
+      background-color: var(--color-cream);
+      padding: 40px 4% 30px;
+      border-top: 1px solid var(--color-border);
+    }
+    .sb-footer__grid {
+      max-width: 1300px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+    .sb-footer__logo { display: flex; align-items: center; gap: 8px; }
+    .sb-footer__links { 
+      display: flex; 
+      gap: 20px; 
+      flex-wrap: wrap; 
+      justify-content: center; 
+      list-style: none; 
+    }
+    .sb-footer__link { 
+      font-size: clamp(0.8rem, 2vw, 0.9rem); 
+      color: var(--color-text-secondary); 
+      transition: color var(--duration-fast) var(--ease-smooth); 
+      min-height: var(--touch-target);
+      display: inline-flex;
+      align-items: center;
+    }
+    .sb-footer__link:hover { color: var(--color-primary); }
+    .sb-footer__copyright { 
+      font-size: clamp(0.7rem, 1.5vw, 0.85rem); 
+      color: var(--color-text-secondary); 
+      border-top: 1px solid var(--color-border); 
+      width: 100%; 
+      padding-top: 16px; 
+    }
+
+    /* ===== TOAST ===== */
+    .sb-toast-container {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%) translateY(100px);
+      background-color: var(--color-primary);
+      color: var(--color-accent);
+      padding: 12px 24px;
+      border-radius: var(--radius-full);
+      box-shadow: var(--shadow-xl);
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      font-weight: 600;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      border: 1px solid var(--color-border);
+      transition: transform var(--duration-medium) var(--ease-spring), opacity var(--duration-medium) var(--ease-smooth);
+      max-width: 90%;
+      text-align: center;
+    }
+    .sb-toast-container--show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* ===== ORDER SUMMARY MODAL ===== */
+    .sb-order-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 1001;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+    .sb-order-modal--show {
+      display: flex;
+      animation: fadeInModal var(--duration-medium) var(--ease-out);
+    }
+    @keyframes fadeInModal {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .sb-order-modal__card {
+      background: var(--color-white);
+      border-radius: var(--radius-2xl);
+      max-width: 480px;
+      width: 100%;
+      padding: 32px 24px;
+      box-shadow: var(--shadow-xl);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+    .sb-order-modal__title {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      margin-bottom: 4px;
+    }
+    .sb-order-modal__sub {
+      color: var(--color-text-secondary);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+    }
+    .sb-order-modal__item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--color-border);
+      font-size: 0.95rem;
+    }
+    .sb-order-modal__item:last-child {
+      border-bottom: none;
+    }
+    .sb-order-modal__item-name { color: var(--color-text-primary); }
+    .sb-order-modal__item-price { font-weight: 600; color: var(--color-primary); }
+    .sb-order-modal__total {
+      display: flex;
+      justify-content: space-between;
+      padding: 16px 0 8px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      border-top: 2px solid var(--color-primary);
+      margin-top: 8px;
+    }
+    .sb-order-modal__actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .sb-order-modal__actions .sb-btn {
+      flex: 1;
+      min-width: 120px;
+    }
+    .sb-order-modal__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--color-text-secondary);
+      padding: 8px;
+      min-height: 44px;
+      min-width: 44px;
+    }
+
+    /* ===== CART STYLES ===== */
+    .sb-cart-section {
+      padding: 80px 4% 60px;
+      background-color: var(--color-white);
+    }
+    .sb-cart-wrapper {
+      max-width: 900px;
+      margin: 0 auto;
+      background: var(--color-cream);
+      border-radius: var(--radius-2xl);
+      padding: 32px 28px;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--color-border);
+    }
+    .sb-cart-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .sb-cart-header h2 {
+      font-family: var(--font-heading);
+      font-size: 1.8rem;
+      color: var(--color-primary);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .sb-cart-header span {
+      background: var(--color-primary);
+      color: var(--color-white);
+      padding: 4px 16px;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+    .sb-cart-items {
+      list-style: none;
+      max-height: 350px;
+      overflow-y: auto;
+      margin-bottom: 16px;
+    }
+    .sb-cart-items::-webkit-scrollbar {
+      width: 4px;
+    }
+    .sb-cart-items::-webkit-scrollbar-thumb {
+      background: var(--color-secondary);
+      border-radius: 999px;
+    }
+    .sb-cart-items::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .sb-cart-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 8px;
+      border-bottom: 1px solid var(--color-border);
+      gap: 12px;
+    }
+    .sb-cart-item:last-child {
+      border-bottom: none;
+    }
+    .sb-cart-item-info {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      min-width: 0;
+    }
+    .sb-cart-item-name {
+      font-weight: 600;
+      color: var(--color-primary);
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+    }
+    .sb-cart-item-detail {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+    }
+    .sb-cart-item-price {
+      font-weight: 700;
+      color: var(--color-primary);
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      white-space: nowrap;
+    }
+    .sb-cart-item-remove {
+      background: none;
+      border: none;
+      color: #b34a3a;
+      font-size: 1.2rem;
+      cursor: pointer;
+      padding: 4px 8px;
+      min-height: 36px;
+      min-width: 36px;
+      border-radius: var(--radius-full);
+      transition: background var(--duration-fast) var(--ease-smooth);
+    }
+    .sb-cart-item-remove:hover {
+      background: rgba(179, 74, 58, 0.1);
+    }
+    .sb-cart-empty {
+      text-align: center;
+      padding: 30px 0;
+      color: var(--color-text-secondary);
+      font-size: 1rem;
+    }
+    .sb-cart-empty svg {
+      margin-bottom: 12px;
+      opacity: 0.5;
+    }
+    .sb-cart-total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px 0 8px;
+      border-top: 2px solid var(--color-primary);
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-primary);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .sb-cart-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 8px;
+      flex-wrap: wrap;
+    }
+    .sb-cart-actions .sb-btn {
+      flex: 1;
+      min-width: 140px;
+    }
+
+    /* ===== CART FLOATING BUTTON ===== */
+    .sb-cart-float {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 90;
+      background: var(--color-primary);
+      color: var(--color-white);
+      border: none;
+      border-radius: var(--radius-full);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      font-size: clamp(0.85rem, 2vw, 0.95rem);
+      box-shadow: var(--shadow-xl);
+      cursor: pointer;
+      transition: transform var(--duration-normal) var(--ease-spring), box-shadow var(--duration-normal) var(--ease-smooth);
+      min-height: 56px;
+      min-width: 56px;
+      touch-action: manipulation;
+    }
+    .sb-cart-float:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 40px rgba(62, 39, 35, 0.3);
+    }
+    .sb-cart-float-badge {
+      background: var(--color-accent);
+      color: var(--color-primary);
+      border-radius: var(--radius-full);
+      padding: 0 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      min-width: 24px;
+      text-align: center;
+    }
+    .sb-cart-float--hidden {
+      transform: translateY(100px) scale(0.8);
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 767px) {
+      .sb-navbar__toggle { display: flex; }
+      .sb-navbar__menu {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100dvh;
+        background: rgba(255, 249, 242, 0.96);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        flex-direction: column;
+        padding: 80px 24px 40px;
+        gap: 20px;
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform var(--duration-medium) var(--ease-spring), opacity var(--duration-medium) var(--ease-smooth);
+        overflow-y: auto;
+        justify-content: center;
+        align-items: center;
+        z-index: 99;
+      }
+      .sb-navbar__menu--open {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .sb-navbar__link {
+        font-size: 1.2rem;
+        padding: 12px 20px;
+        min-height: 48px;
+      }
+      .sb-navbar__link::after { display: none; }
+      
+      .sb-hero__floating-badge { display: none; }
+      .sb-best-seller__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .sb-menu__grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+      .sb-product-card { min-height: 280px; }
+      .sb-product-card__content { padding: 10px 12px 14px; }
+      .sb-product-card__title { font-size: 0.8rem; min-height: 32px; }
+      .sb-product-card__price { font-size: 0.85rem; }
+      .sb-product-card__footer { padding-top: 8px; }
+      .sb-product-card__pasta-btn { font-size: 0.6rem; padding: 2px 8px; min-height: 24px; }
+      .sb-product-card__badge { font-size: 0.55rem; padding: 2px 10px; top: 6px; left: 6px; }
+      .sb-why-us__grid { grid-template-columns: 1fr; gap: 16px; }
+      .sb-reviews__card { flex: 0 0 85%; padding: 20px 16px; }
+      .sb-gallery__follow-card { padding: 30px 20px; }
+      .sb-cta__banner { padding: 36px 20px; border-radius: var(--radius-xl); }
+      .sb-menu__filters { gap: 6px; }
+      .sb-menu__filter-chip { padding: 6px 12px; font-size: 0.7rem; min-height: 32px; }
+      .sb-menu__search { padding: 10px 12px 10px 36px; font-size: 0.85rem; min-height: 36px; }
+      .sb-menu__search-icon { left: 12px; width: 16px; height: 16px; }
+      .sb-section-header { margin-bottom: 24px; }
+      .sb-section-header__title { font-size: 1.4rem; }
+      .sb-cta__delivery { flex-direction: column; align-items: center; }
+      .sb-btn { padding: 12px 18px; font-size: 0.8rem; min-height: 38px; }
+      .sb-btn--sm { padding: 6px 10px; font-size: 0.65rem; min-height: 28px; }
+      .sb-why-us__card { padding: 24px 16px; }
+      .sb-why-us__icon { width: 48px; height: 48px; font-size: 1.5rem; }
+      .sb-toast-container { bottom: 12px; padding: 10px 18px; font-size: 0.8rem; }
+      .sb-footer { padding: 30px 4% 20px; }
+      .sb-footer__links { gap: 12px; }
+      .sb-order-modal__card { padding: 24px 16px; margin: 16px; }
+      .sb-order-modal__actions { flex-direction: column; }
+      .sb-order-modal__actions .sb-btn { flex: none; width: 100%; }
+      .sb-cart-wrapper { padding: 20px 16px; }
+      .sb-cart-header h2 { font-size: 1.4rem; }
+      .sb-cart-item { padding: 10px 4px; flex-wrap: wrap; }
+      .sb-cart-item-info { flex: 1 1 100%; }
+      .sb-cart-item-price { flex: 0 0 auto; }
+      .sb-cart-actions .sb-btn { min-width: 100%; }
+      .sb-cart-float { padding: 12px 16px; font-size: 0.8rem; bottom: 16px; right: 16px; min-height: 48px; }
+      .sb-cart-section { padding: 60px 4% 40px; }
+    }
+
+    @media (min-width: 480px) {
+      .sb-hero__grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+      .sb-hero__content { text-align: left; align-items: flex-start; }
+      .sb-hero__actions { justify-content: flex-start; }
+      .sb-hero__delivery { justify-content: flex-start; }
+      .sb-hero__floating-badge--1 { top: 8%; right: -5%; }
+      .sb-hero__floating-badge--2 { bottom: 12%; left: -5%; }
+      .sb-best-seller__grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 24px; }
+      .sb-menu__grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 24px; }
+      .sb-reviews__card { flex: 0 0 47%; }
+      .sb-product-card { min-height: 350px; }
+    }
+
+    @media (min-width: 768px) {
+      .sb-navbar__toggle { display: none; }
+      .sb-navbar__menu { 
+        display: flex; 
+        position: static; 
+        flex-direction: row; 
+        padding: 0; 
+        background: transparent; 
+        box-shadow: none; 
+        transform: none; 
+        opacity: 1; 
+        pointer-events: auto; 
+        gap: 24px;
+      }
+      .sb-navbar { padding: 18px 6%; }
+      .sb-navbar--scrolled { padding: 12px 6%; }
+      .sb-hero { padding: 120px 6% 60px; }
+      .sb-best-seller { padding: 100px 6% 80px; }
+      .sb-menu { padding: 100px 6% 80px; }
+      .sb-why-us { padding: 100px 6% 80px; }
+      .sb-reviews { padding: 100px 6% 80px; }
+      .sb-gallery { padding: 100px 6% 80px; }
+      .sb-faq { padding: 100px 6% 80px; }
+      .sb-cta { padding: 80px 6%; }
+      .sb-section-header { margin-bottom: 48px; }
+      .sb-best-seller__grid { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 28px; }
+      .sb-menu__grid { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 28px; }
+      .sb-reviews__card { flex: 0 0 47%; }
+      .sb-product-card { min-height: 380px; }
+      .sb-cart-section { padding: 100px 6% 80px; }
+      .sb-cart-wrapper { padding: 40px 36px; }
+    }
+
+    @media (min-width: 1024px) {
+      .sb-navbar { padding: 20px 8%; }
+      .sb-navbar--scrolled { padding: 14px 8%; }
+      .sb-hero { padding: 140px 8% 80px; }
+      .sb-best-seller { padding: 120px 8% 100px; }
+      .sb-menu { padding: 120px 8% 100px; }
+      .sb-why-us { padding: 120px 8% 100px; }
+      .sb-reviews { padding: 120px 8% 100px; }
+      .sb-gallery { padding: 120px 8% 100px; }
+      .sb-faq { padding: 120px 8% 100px; }
+      .sb-cta { padding: 100px 8%; }
+      .sb-hero__grid { gap: 50px; }
+      .sb-hero__floating-badge--1 { top: 10%; right: -5%; }
+      .sb-hero__floating-badge--2 { bottom: 15%; left: -5%; }
+      .sb-best-seller__grid { grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+      .sb-menu__grid { grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 30px; }
+      .sb-reviews__card { flex: 0 0 31.5%; }
+      .sb-product-card { min-height: 400px; }
+      .sb-product-card__content { padding: 18px 20px 20px; }
+      .sb-cart-section { padding: 120px 8% 100px; }
+    }
+
+    @media (min-width: 1280px) {
+      .sb-navbar { padding: 24px 10%; }
+      .sb-navbar--scrolled { padding: 16px 10%; }
+      .sb-hero { padding: 160px 10% 100px; }
+      .sb-best-seller, .sb-menu, .sb-why-us, .sb-reviews, .sb-gallery, .sb-faq, .sb-cta, .sb-cart-section { 
+        padding-left: 10%; 
+        padding-right: 10%; 
+      }
+    }
+
+    @media (max-width: 375px) {
+      .sb-best-seller__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .sb-menu__grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+      .sb-product-card { min-height: 250px; }
+      .sb-product-card__title { font-size: 0.7rem; min-height: 28px; }
+      .sb-product-card__price { font-size: 0.75rem; }
+      .sb-product-card__category { font-size: 0.5rem; }
+      .sb-product-card__content { padding: 8px 10px 12px; }
+      .sb-product-card__pasta-btn { font-size: 0.5rem; padding: 2px 6px; min-height: 20px; }
+      .sb-product-card__badge { font-size: 0.5rem; padding: 2px 8px; }
+      .sb-btn { padding: 10px 14px; font-size: 0.7rem; }
+      .sb-section-header__title { font-size: 1.2rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      .sb-drip { transform: translateY(0) !important; opacity: 1 !important; }
+      .sb-section, .sb-product-card, .sb-hero__tagline, .sb-hero__title, .sb-hero__desc, .sb-hero__actions, .sb-hero__delivery, .sb-hero__image { 
+        transform: none !important; 
+        opacity: 1 !important; 
+        animation: none !important; 
+      }
+      .sb-navbar__toggle--open .sb-navbar__bar { transition: none !important; }
+    }
+  </style>
+
+  <!-- JSON-LD -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "LocalBusiness",
+          "@id": "https://stick-banana.vercel.app/#localbusiness",
+          "name": "Stick Banana",
+          "image": "/images/hero-stickbanana.jpg",
+          "priceRange": "$$",
+          "telephone": "628123456789",
+          "address": { "@type": "PostalAddress", "streetAddress": "", "addressLocality": "", "addressRegion": "", "postalCode": "", "addressCountry": "ID" }
+        },
+        {
+          "@type": "Product",
+          "@id": "https://stick-banana.vercel.app/#product",
+          "name": "Stick Banana Premium",
+          "image": "/images/hero-stickbanana.jpg",
+          "description": "Camilan premium pisang stick dilapisi cokelat Belgia lumer dan topping melimpah.",
+          "brand": { "@type": "Brand", "name": "Stick Banana" },
+          "offers": { "@type": "AggregateOffer", "priceCurrency": "IDR", "lowPrice": "6000", "highPrice": "9000", "offerCount": "10" }
+        }
+      ]
+    }
+  </script>
+</head>
+<body>
+
+  <!-- ===== TOAST NOTIFICATION ===== -->
+  <div class="sb-toast-container" id="sb-toast-container" aria-live="polite">Nomor WhatsApp akan segera tersedia</div>
+
+  <!-- ===== ORDER SUMMARY MODAL ===== -->
+  <div class="sb-order-modal" id="orderModal">
+    <div class="sb-order-modal__card">
+      <h3 class="sb-order-modal__title">📋 Ringkasan Pesanan</h3>
+      <p class="sb-order-modal__sub">Review pesananmu sebelum kirim ke WhatsApp</p>
+      <div id="orderItems"></div>
+      <div class="sb-order-modal__total">
+        <span>Total</span>
+        <span id="orderTotal">Rp 0</span>
+      </div>
+      <div class="sb-order-modal__actions">
+        <button class="sb-btn sb-btn--outline" onclick="closeOrderModal()">✕ Tutup</button>
+        <button class="sb-btn sb-btn--whatsapp" onclick="sendToWhatsApp()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Kirim ke WhatsApp
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="sb-navbar">
+    <a href="#" class="sb-navbar__logo" aria-label="Stick Banana Home">
+      <img src="/logo-stickbanana.svg" alt="Stick Banana Logo" class="sb-logo">
+    </a>
+    <nav aria-label="Main Navigation">
+      <ul class="sb-navbar__menu">
+        <li><a href="#" class="sb-navbar__link">Home</a></li>
+        <li><a href="#best-seller" class="sb-navbar__link">Best Seller</a></li>
+        <li><a href="#menu" class="sb-navbar__link">Menu</a></li>
+        <li><a href="#why-us" class="sb-navbar__link">Kelebihan</a></li>
+        <li><a href="#reviews" class="sb-navbar__link">Testimoni</a></li>
+        <li><a href="#faq" class="sb-navbar__link">FAQ</a></li>
+        <li><button class="sb-btn sb-btn--primary sb-btn--whatsapp" onclick="openOrderModal()">Pesan Sekarang</button></li>
+      </ul>
+    </nav>
+    <button class="sb-navbar__toggle" aria-label="Toggle Menu" aria-expanded="false">
+      <span class="sb-navbar__bars">
+        <span class="sb-navbar__bar"></span>
+        <span class="sb-navbar__bar"></span>
+        <span class="sb-navbar__bar"></span>
+      </span>
+    </button>
+  </header>
+
+  <main>
+    <!-- ===== HERO SECTION ===== -->
+    <section class="sb-hero">
+      <div class="sb-hero__grid">
+        <div class="sb-hero__content">
+          <span class="sb-hero__tagline">✦ The Ultimate Premium Dessert ✦</span>
+          <h1 class="sb-hero__title">Melted Premium <span>Stick Banana</span></h1>
+          <p class="sb-hero__desc">
+            Manjakan lidahmu dengan frozen banana stick premium yang dicelup ke dalam cokelat Belgia lumer dan diberi topping pasta pilihan. Nikmati sensasi creamy dan segar di setiap gigitan!
+          </p>
+          <div class="sb-hero__actions">
+            <a href="#menu" class="sb-btn sb-btn--accent">Lihat Menu</a>
+            <button class="sb-btn sb-btn--outline sb-btn--whatsapp" onclick="openOrderModal()">Pesan WhatsApp</button>
+          </div>
+          <div class="sb-hero__delivery">
+            <button class="sb-btn sb-btn--delivery sb-btn--coming-soon" onclick="showToast('Link GrabFood akan segera tersedia')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              GrabFood
+            </button>
+            <button class="sb-btn sb-btn--delivery-shopee sb-btn--coming-soon" onclick="showToast('Link ShopeeFood akan segera tersedia')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              ShopeeFood
+            </button>
+          </div>
+        </div>
+        <div class="sb-hero__image-container">
+          <img src="/images/hero-stickbanana.jpg" alt="Stick Banana premium dessert with chocolate drizzle" class="sb-hero__image" width="600" height="600" loading="eager" fetchpriority="high" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23FFF9F2%22/%3E%3Ctext x=%22300%22 y=%22300%22 text-anchor=%22middle%22 font-family=%22Baloo 2%22 font-size=%2232%22 fill=%22%233E2723%22%3E🍌 Stick Banana%3C/text%3E%3C/svg%3E'">
+          <div class="sb-hero__floating-badge sb-hero__floating-badge--1">⭐ Best Seller</div>
+          <div class="sb-hero__floating-badge sb-hero__floating-badge--2">🍫 10+ Varian</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== BEST SELLER ===== -->
+    <section class="sb-section sb-best-seller" id="best-seller">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <defs><linearGradient id="drip1" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="var(--color-secondary)"/><stop offset="100%" stop-color="var(--color-primary)"/></linearGradient></defs>
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">✦ Terfavorit ✦</span>
+        <h2 class="sb-section-header__title">Best Seller</h2>
+        <div class="sb-section-header__line"></div>
+        <p class="sb-section-header__sub">Pilihan yang paling sering dipesan pelanggan kami</p>
+      </div>
+
+      <div class="sb-best-seller__grid" id="best-seller-grid"></div>
+    </section>
+
+    <!-- ===== PRODUCT MENU ===== -->
+    <section class="sb-section sb-menu sb-section-lazy" id="menu">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">Varian Rasa</span>
+        <h2 class="sb-section-header__title">Pilihan Menu Kami</h2>
+        <div class="sb-section-header__line"></div>
+        <p class="sb-section-header__sub">Pilih varian favoritmu dengan pasta sesuai selera</p>
+      </div>
+
+      <div class="sb-menu__controls">
+        <div class="sb-menu__search-container">
+          <svg class="sb-menu__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" class="sb-menu__search" placeholder="Cari varian pisang favoritmu..." aria-label="Cari Menu">
+        </div>
+        <div class="sb-menu__filters" role="tablist">
+          <button class="sb-menu__filter-chip sb-menu__filter-chip--active" role="tab" aria-selected="true" data-filter="all">Semua</button>
+          <button class="sb-menu__filter-chip" role="tab" aria-selected="false" data-filter="bestseller">Best Seller</button>
+          <button class="sb-menu__filter-chip" role="tab" aria-selected="false" data-filter="chocolate">Chocolate</button>
+          <button class="sb-menu__filter-chip" role="tab" aria-selected="false" data-filter="cheese">Cheese</button>
+          <button class="sb-menu__filter-chip" role="tab" aria-selected="false" data-filter="special">Special</button>
+        </div>
+      </div>
+
+      <div class="sb-menu__grid" id="product-grid"></div>
+
+      <div class="sb-menu__empty-state"><p>Tidak ada produk. Menu sedang disiapkan.</p></div>
+    </section>
+
+    <!-- ===== WHY CHOOSE US ===== -->
+    <section class="sb-section sb-why-us sb-section-lazy" id="why-us">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">Kenapa Kami</span>
+        <h2 class="sb-section-header__title">Mengapa Memilih Stick Banana?</h2>
+        <div class="sb-section-header__line"></div>
+      </div>
+
+      <div class="sb-why-us__grid">
+        <div class="sb-why-us__card reveal"><div class="sb-why-us__icon" aria-hidden="true">🧑‍🍳</div><h3 class="sb-why-us__title">Bahan Premium</h3><p class="sb-why-us__desc">Cokelat Belgia lumer dan bahan pilihan berkualitas tinggi untuk menjamin kepuasan rasa Anda.</p></div>
+        <div class="sb-why-us__card reveal"><div class="sb-why-us__icon" aria-hidden="true">🔥</div><h3 class="sb-why-us__title">Dibuat Fresh</h3><p class="sb-why-us__desc">Setiap porsi diproduksi dengan tangan langsung setiap hari untuk rasa yang renyah optimal.</p></div>
+        <div class="sb-why-us__card reveal"><div class="sb-why-us__icon" aria-hidden="true">✨</div><h3 class="sb-why-us__title">Rasa Autentik</h3><p class="sb-why-us__desc">Resep turun-temurun istimewa dengan kombinasi sentuhan modern kekinian yang memikat.</p></div>
+      </div>
+    </section>
+
+    <!-- ===== REVIEWS ===== -->
+    <section class="sb-section sb-reviews sb-section-lazy" id="reviews">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">Ulasan Pelanggan</span>
+        <h2 class="sb-section-header__title">Apa Kata Mereka?</h2>
+        <div class="sb-section-header__line"></div>
+      </div>
+
+      <div class="sb-reviews__slider-wrapper">
+        <div class="sb-reviews__slider" tabindex="0">
+          <div class="sb-reviews__card"><div class="sb-reviews__rating">⭐⭐⭐⭐⭐</div><p class="sb-reviews__text">"Enak banget! Pisangnya manis, cokelatnya creamy."</p><h4 class="sb-reviews__name">Aril putra Sholeh</h4></div>
+          <div class="sb-reviews__card"><div class="sb-reviews__rating">⭐⭐⭐⭐⭐</div><p class="sb-reviews__text">"Toppingnya melimpah, cocok buat ngemil."</p><h4 class="sb-reviews__name">Roni</h4></div>
+          <div class="sb-reviews__card"><div class="sb-reviews__rating">⭐⭐⭐⭐⭐</div><p class="sb-reviews__text">"Favoritku Oreo Crumble with Taro! Wajib coba pokoknya sih."</p><h4 class="sb-reviews__name">Slamet</h4></div>
+          <div class="sb-reviews__card"><div class="sb-reviews__rating">⭐⭐⭐⭐</div><p class="sb-reviews__text">"Rasanya mewah, kayak dessert bintang 5."</p><h4 class="sb-reviews__name">Wandi</h4></div>
+          <div class="sb-reviews__card"><div class="sb-reviews__rating">⭐⭐⭐⭐⭐</div><p class="sb-reviews__text">"Rasanya creamy banget! Kombinasi cokelat dan topping pastanya pas."</p><h4 class="sb-reviews__name">Cholidin</h4></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="sb-section sb-gallery sb-section-lazy">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">Instagram kami</span>
+        <h2 class="sb-section-header__title">Ikuti Kami Di Sosial Media</h2>
+        <div class="sb-section-header__line"></div>
+      </div>
+
+      <div class="sb-gallery__follow-card">
+        <div class="sb-gallery__insta-icon" aria-hidden="true">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </div>
+        <h3 class="sb-gallery__username">@stick.banana.official</h3>
+        <p class="sb-gallery__insta-text">Dapatkan info terupdate mengenai promo menarik, menu terbaru, dan konten seru seputar Stick Banana setiap harinya!</p>
+        <a href="https://instagram.com/stick.banana.official" target="_blank" rel="noopener noreferrer" class="sb-btn sb-btn--primary">Follow us @stick.banana.official</a>
+      </div>
+    </section>
+
+    <!-- ===== FAQ ===== -->
+    <section class="sb-section sb-faq sb-section-lazy" id="faq">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">Pertanyaan</span>
+        <h2 class="sb-section-header__title">Tanya Jawab (FAQ)</h2>
+        <div class="sb-section-header__line"></div>
+      </div>
+
+      <div class="sb-faq__accordion">
+        <div class="sb-faq__item"><button class="sb-faq__trigger" aria-expanded="false"><span class="sb-faq__question">Apa itu Stick Banana?</span><svg class="sb-faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="sb-faq__panel"><div class="sb-faq__answer">Stick Banana adalah camilan frozen banana premium berbentuk stick yang dilapisi cokelat Belgian leleh dan aneka topping pasta pilihan.</div></div></div>
+        <div class="sb-faq__item"><button class="sb-faq__trigger" aria-expanded="false"><span class="sb-faq__question">Berapa lama masa simpan?</span><svg class="sb-faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="sb-faq__panel"><div class="sb-faq__answer">Stick Banana paling nikmat disantap langsung saat masih dingin. Namun dapat disimpan hingga 2 hari di dalam freezer.</div></div></div>
+        <div class="sb-faq__item"><button class="sb-faq__trigger" aria-expanded="false"><span class="sb-faq__question">Bisa custom topping?</span><svg class="sb-faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="sb-faq__panel"><div class="sb-faq__answer">Tentu saja! Anda bisa bebas memilih kombinasi saus celup (dip), saus siram (drizzle), dan taburan topping sesuai selera Anda.</div></div></div>
+        <div class="sb-faq__item"><button class="sb-faq__trigger" aria-expanded="false"><span class="sb-faq__question">Apakah halal?</span><svg class="sb-faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="sb-faq__panel"><div class="sb-faq__answer">Ya, seluruh bahan baku pembuatan Stick Banana terjamin halal, higienis, dan berkualitas tinggi tanpa bahan pengawet berbahaya.</div></div></div>
+        <div class="sb-faq__item"><button class="sb-faq__trigger" aria-expanded="false"><span class="sb-faq__question">Bagaimana cara memesan?</span><svg class="sb-faq__icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button><div class="sb-faq__panel"><div class="sb-faq__answer">Sangat mudah! Klik tombol "Pesan Sekarang" di website ini, review pesananmu, lalu kirim ke WhatsApp kami.</div></div></div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="sb-section sb-cta sb-section-lazy">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-cta__banner">
+        <div class="sb-cta__content">
+          <h2 class="sb-cta__title">Rasakan Kelezatan Stick Banana Sekarang!</h2>
+          <p class="sb-cta__desc">Pesan sekarang untuk menikmati camilan manis lumer premium berkualitas langsung ke rumahmu.</p>
+          <div class="sb-cta__delivery">
+            <button class="sb-btn sb-btn--whatsapp" onclick="openOrderModal()">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              Pesan via WhatsApp
+            </button>
+            <button class="sb-btn sb-btn--delivery sb-btn--coming-soon" onclick="showToast('Link GrabFood akan segera tersedia')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              GrabFood
+            </button>
+            <button class="sb-btn sb-btn--delivery-shopee sb-btn--coming-soon" onclick="showToast('Link ShopeeFood akan segera tersedia')">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+              ShopeeFood
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CART SECTION ===== -->
+    <section class="sb-section sb-cart-section" id="cart-section">
+      <div class="sb-drip" aria-hidden="true">
+        <svg viewBox="0 0 1440 120" preserveAspectRatio="none" style="width:100%;height:100%;">
+          <path d="M0,0 L1440,0 L1440,30 C1380,30 1360,90 1300,90 C1240,90 1220,40 1160,40 C1100,40 1080,105 1020,105 C960,105 940,25 880,25 C820,25 800,85 740,85 C680,85 660,35 600,35 C540,35 520,115 460,115 C400,115 380,50 320,50 C260,50 240,95 180,95 C120,95 100,20 40,20 C20,20 0,10 0,10 Z" fill="url(#drip1)" opacity="0.5"/>
+        </svg>
+      </div>
+
+      <div class="sb-section-header">
+        <span class="sb-section-header__tag">🛒 Keranjang Belanja</span>
+        <h2 class="sb-section-header__title">Pilihan Varian & Pasta Favoritmu</h2>
+        <div class="sb-section-header__line"></div>
+        <p class="sb-section-header__sub">Pilih varian topping dan pasta sesuai selera, lalu tambahkan ke keranjang</p>
+      </div>
+
+      <div class="sb-cart-wrapper">
+        <div class="sb-cart-header">
+          <h2>🛒 Keranjang</h2>
+          <span id="cartCount">0 item</span>
+        </div>
+
+        <ul class="sb-cart-items" id="cartItems">
+          <li class="sb-cart-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            <p>Keranjang masih kosong</p>
+            <p style="font-size:0.85rem;margin-top:4px;">Pilih varian dan pasta favoritmu dari menu di atas</p>
+          </li>
+        </ul>
+
+        <div class="sb-cart-total">
+          <span>Total</span>
+          <span id="cartTotal">Rp 0</span>
+        </div>
+
+        <div class="sb-cart-actions">
+          <button class="sb-btn sb-btn--outline" onclick="clearCart()">🗑️ Kosongkan</button>
+          <button class="sb-btn sb-btn--whatsapp" onclick="checkoutCart()">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Checkout
+          </button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="sb-footer">
+    <div class="sb-footer__grid">
+      <div class="sb-footer__logo"><img src="/logo-stickbanana.svg" alt="Stick Banana Logo" class="sb-logo"></div>
+      <ul class="sb-footer__links">
+        <li><a href="#" class="sb-footer__link">Tentang Kami</a></li>
+        <li><a href="#menu" class="sb-footer__link">Produk</a></li>
+        <li><a href="#reviews" class="sb-footer__link">Testimoni</a></li>
+        <li><a href="#faq" class="sb-footer__link">Bantuan & FAQ</a></li>
+      </ul>
+      <p class="sb-footer__copyright">&copy; 2026 Stick Banana. Hak Cipta Dilindungi Undang-Undang.</p>
+    </div>
+  </footer>
+
+  <!-- ===== FLOATING CART BUTTON ===== -->
+  <button class="sb-cart-float" id="cartFloat" onclick="document.getElementById('cart-section').scrollIntoView({behavior:'smooth'})">
+    🛒
+    <span class="sb-cart-float-badge" id="cartFloatBadge">0</span>
+  </button>
+
+  <script>
+    // ============================================================
+    // DATA PRODUK
+    // ============================================================
+    const products = [
+      { id: 1, name: 'Original Chocolate', price: 6000, category: 'chocolate', badge: null, image: 'product-1.jpg', pastaOptions: null },
+      { id: 2, name: 'Keju + Pasta', price: 8000, category: 'cheese', badge: null, image: 'product-2.jpg', pastaOptions: ['Chocolate', 'Vanilla'] },
+      { id: 3, name: 'Kacang Almond + Pasta', price: 8000, category: 'bestseller', badge: '⭐ Best Seller', image: 'product-3.jpg', pastaOptions: ['Chocolate', 'Vanilla'] },
+      { id: 4, name: 'Oreo Crumble + Pasta', price: 8000, category: 'bestseller', badge: '⭐ Best Seller', image: 'product-4.jpg', pastaOptions: ['Chocolate', 'Vanilla'] },
+      { id: 5, name: 'Meises Rainbow + Pasta', price: 8000, category: 'chocolate', badge: null, image: 'product-5.jpg', pastaOptions: ['Chocolate', 'Vanilla'] },
+      { id: 6, name: 'Meises Chocolate + Pasta', price: 8000, category: 'chocolate', badge: null, image: 'product-6.jpg', pastaOptions: ['Chocolate', 'Vanilla'] },
+      { id: 7, name: 'Meises Rainbow + Keju Mix', price: 9000, category: 'special', badge: '⭐ SPECIAL', image: 'product-7.jpg', pastaOptions: ['Chocolate', 'Vanilla', 'Strawberry', 'Taro', 'Matcha'] },
+      { id: 8, name: 'Meises Chocolate + Keju Mix', price: 9000, category: 'special', badge: '⭐ SPECIAL', image: 'product-8.jpg', pastaOptions: ['Chocolate', 'Vanilla', 'Strawberry', 'Taro', 'Matcha'] },
+      { id: 9, name: 'Kacang Almond & Keju Mix', price: 9000, category: 'special', badge: '⭐ SPECIAL', image: 'product-9.jpg', pastaOptions: ['Chocolate', 'Vanilla', 'Strawberry', 'Taro', 'Matcha'] },
+      { id: 10, name: 'Oreo Crumble & Keju Mix', price: 9000, category: 'special', badge: '⭐ SPECIAL', image: 'product-10.jpg', pastaOptions: ['Chocolate', 'Vanilla', 'Strawberry', 'Taro', 'Matcha'] }
+    ];
+
+    const bestSellerIds = [3, 4];
+
+    // ============================================================
+    // CART STATE
+    // ============================================================
+    let cart = [];
+    let cartIdCounter = 0;
+
+    // ============================================================
+    // ORDER SUMMARY STATE
+    // ============================================================
+    let orderItems = [];
+
+    // ============================================================
+    // FUNGSI UTAMA
+    // ============================================================
+    function showToast(message) {
+      const toast = document.getElementById('sb-toast-container');
+      toast.textContent = message || 'Nomor WhatsApp akan segera tersedia';
+      toast.classList.add('sb-toast-container--show');
+      clearTimeout(toast._timeout);
+      toast._timeout = setTimeout(() => toast.classList.remove('sb-toast-container--show'), 3000);
+    }
+
+    function formatPrice(price) {
+      return 'Rp ' + price.toLocaleString('id-ID');
+    }
+
+    // ============================================================
+    // CART FUNCTIONS
+    // ============================================================
+    function getCartItemPasta(card) {
+      const activePasta = card.querySelector('.sb-product-card__pasta-btn.active');
+      return activePasta ? activePasta.dataset.pasta : 'Chocolate';
+    }
+
+    function addToCart(productId) {
+      const product = products.find(p => p.id === productId);
+      if (!product) return;
+
+      // Find the card (try both grids)
+      let card = document.querySelector(`#product-grid .sb-product-card[data-id="${productId}"]`);
+      if (!card) {
+        card = document.querySelector(`#best-seller-grid .sb-product-card[data-id="${productId}"]`);
+      }
+      if (!card) return;
+
+      const pasta = getCartItemPasta(card);
+      
+      // Check if same product with same pasta already in cart
+      const existingIndex = cart.findIndex(item => item.productId === productId && item.pasta === pasta);
+      
+      if (existingIndex > -1) {
+        // Increment quantity
+        cart[existingIndex].quantity += 1;
+        showToast(`✅ ${product.name} (${pasta}) +1 di keranjang`);
+      } else {
+        // Add new item
+        cart.push({
+          id: cartIdCounter++,
+          productId: product.id,
+          name: product.name,
+          price: product.price,
+          pasta: pasta,
+          quantity: 1
+        });
+        showToast(`✅ ${product.name} (${pasta}) ditambahkan ke keranjang`);
+      }
+
+      updateCartUI();
+    }
+
+    function removeFromCart(cartItemId) {
+      cart = cart.filter(item => item.id !== cartItemId);
+      updateCartUI();
+      showToast('🗑️ Item dihapus dari keranjang');
+    }
+
+    function clearCart() {
+      if (cart.length === 0) return;
+      if (confirm('Yakin mau kosongkan keranjang?')) {
+        cart = [];
+        updateCartUI();
+        showToast('🗑️ Keranjang dikosongkan');
+      }
+    }
+
+    function getCartTotal() {
+      return cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    }
+
+    function getCartItemCount() {
+      return cart.reduce((sum, item) => sum + item.quantity, 0);
+    }
+
+    function updateCartUI() {
+      const itemsContainer = document.getElementById('cartItems');
+      const totalElement = document.getElementById('cartTotal');
+      const countElement = document.getElementById('cartCount');
+      const floatBadge = document.getElementById('cartFloatBadge');
+      const floatBtn = document.getElementById('cartFloat');
+
+      const count = getCartItemCount();
+      const total = getCartTotal();
+
+      // Update count and total
+      countElement.textContent = count + ' item';
+      totalElement.textContent = formatPrice(total);
+      floatBadge.textContent = count;
+
+      // Show/hide float button
+      if (count === 0) {
+        floatBtn.classList.add('sb-cart-float--hidden');
+      } else {
+        floatBtn.classList.remove('sb-cart-float--hidden');
+      }
+
+      // Render items
+      if (cart.length === 0) {
+        itemsContainer.innerHTML = `
+          <li class="sb-cart-empty">
+            <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
+            <p>Keranjang masih kosong</p>
+            <p style="font-size:0.85rem;margin-top:4px;">Pilih varian dan pasta favoritmu dari menu di atas</p>
+          </li>
+        `;
+        return;
+      }
+
+      itemsContainer.innerHTML = cart.map(item => `
+        <li class="sb-cart-item">
+          <div class="sb-cart-item-info">
+            <span class="sb-cart-item-name">${item.name} ${item.quantity > 1 ? `(x${item.quantity})` : ''}</span>
+            <span class="sb-cart-item-detail">Pasta: ${item.pasta}</span>
+          </div>
+          <span class="sb-cart-item-price">${formatPrice(item.price * item.quantity)}</span>
+          <button class="sb-cart-item-remove" onclick="removeFromCart(${item.id})" aria-label="Hapus item">✕</button>
+        </li>
+      `).join('');
+    }
+
+    function checkoutCart() {
+      if (cart.length === 0) {
+        showToast('Keranjang masih kosong!');
+        return;
+      }
+
+      // Convert cart items to order items format
+      orderItems = cart.map(item => ({
+        id: item.productId,
+        name: item.name,
+        price: item.price,
+        pasta: item.pasta,
+        quantity: item.quantity
+      }));
+
+      // Open the order modal
+      openOrderModalWithCart();
+    }
+
+    // ============================================================
+    // ORDER MODAL
+    // ============================================================
+    function openOrderModal() {
+      // Legacy: collect from visible products
+      const itemsContainer = document.getElementById('orderItems');
+      const totalElement = document.getElementById('orderTotal');
+      
+      // If cart has items, use them
+      if (cart.length > 0) {
+        orderItems = cart.map(item => ({
+          id: item.productId,
+          name: item.name,
+          price: item.price,
+          pasta: item.pasta,
+          quantity: item.quantity
+        }));
+        openOrderModalWithCart();
+        return;
+      }
+
+      // Otherwise collect from menu
+      orderItems = [];
+      
+      document.querySelectorAll('#product-grid .sb-product-card:not(.sb-product-card--hidden)').forEach(card => {
+        const id = parseInt(card.dataset.id);
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+        
+        const pasta = getCartItemPasta(card);
+        
+        orderItems.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          pasta: pasta,
+          quantity: 1
+        });
+      });
+
+      document.querySelectorAll('#best-seller-grid .sb-product-card').forEach(card => {
+        const id = parseInt(card.dataset.id);
+        if (orderItems.some(item => item.id === id)) return;
+        
+        const product = products.find(p => p.id === id);
+        if (!product) return;
+        
+        const pasta = getCartItemPasta(card);
+        
+        orderItems.push({
+          id: product.id,
+          name: product.name,
+          price: product.price,
+          pasta: pasta,
+          quantity: 1
+        });
+      });
+
+      if (orderItems.length === 0) {
+        showToast('Silakan pilih produk terlebih dahulu!');
+        return;
+      }
+
+      renderOrderModal();
+    }
+
+    function openOrderModalWithCart() {
+      if (orderItems.length === 0) {
+        showToast('Keranjang kosong!');
+        return;
+      }
+      renderOrderModal();
+    }
+
+    function renderOrderModal() {
+      const itemsContainer = document.getElementById('orderItems');
+      const totalElement = document.getElementById('orderTotal');
+
+      // Render order items
+      let itemsHTML = '';
+      let total = 0;
+      
+      orderItems.forEach((item, index) => {
+        const subtotal = item.price * (item.quantity || 1);
+        total += subtotal;
+        const qtyText = (item.quantity && item.quantity > 1) ? ` x${item.quantity}` : '';
+        itemsHTML += `
+          <div class="sb-order-modal__item">
+            <span class="sb-order-modal__item-name">${item.name} ${item.pasta ? `(${item.pasta})` : ''}${qtyText}</span>
+            <span class="sb-order-modal__item-price">${formatPrice(subtotal)}</span>
+          </div>
+        `;
+      });
+
+      itemsContainer.innerHTML = itemsHTML;
+      totalElement.textContent = formatPrice(total);
+
+      // Show modal
+      const modal = document.getElementById('orderModal');
+      modal.classList.add('sb-order-modal--show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeOrderModal() {
+      const modal = document.getElementById('orderModal');
+      modal.classList.remove('sb-order-modal--show');
+      document.body.style.overflow = '';
+    }
+
+    function sendToWhatsApp() {
+      // WhatsApp number - GANTI DENGAN NOMOR ASLI
+      const waNumber = '6287879318232';
+      
+      // Build message
+      let message = 'Halo Stick Banana! Saya ingin memesan:%0A%0A';
+      orderItems.forEach((item, index) => {
+        const qty = item.quantity || 1;
+        const subtotal = item.price * qty;
+        message += `${index + 1}. ${item.name}`;
+        if (item.pasta) message += ` (Pasta ${item.pasta})`;
+        message += ` x${qty} - ${formatPrice(subtotal)}%0A`;
+      });
+      
+      const total = orderItems.reduce((sum, item) => sum + (item.price * (item.quantity || 1)), 0);
+      message += `%0A*Total: ${formatPrice(total)}*%0A%0A`;
+      message += 'Terima kasih! 🙏';
+
+      // Open WhatsApp
+      const url = `https://wa.me/${waNumber}?text=${message}`;
+      window.open(url, '_blank');
+      
+      // Clear cart after sending
+      cart = [];
+      updateCartUI();
+      
+      // Close modal
+      closeOrderModal();
+      showToast('✅ Pesanan berhasil dikirim!');
+    }
+
+    // Close modal on background click
+    document.getElementById('orderModal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeOrderModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeOrderModal();
+      }
+    });
+
+    // ============================================================
+    // CREATE PRODUCT CARD HTML
+    // ============================================================
+    function createProductCardHTML(product) {
+      const badgeHTML = product.badge ? `<span class="sb-product-card__badge${product.badge.includes('SPECIAL') ? ' sb-product-card__badge--special' : ''}">${product.badge}</span>` : '';
+      const pastaOptionsHTML = product.pastaOptions ? `
+        <div class="sb-product-card__pasta-select">
+          ${product.pastaOptions.map((p, i) => `
+            <button class="sb-product-card__pasta-btn ${i === 0 ? 'active' : ''}" data-pasta="${p}">${p}</button>
+          `).join('')}
+        </div>
+      ` : '';
+      
+      return `
+        <article class="sb-product-card" data-category="${product.category}" data-bestseller="${product.badge ? 'true' : 'false'}" data-id="${product.id}">
+          <div class="sb-product-card__image-wrapper">
+            ${badgeHTML}
+            <img src="/images/${product.image}" alt="${product.name}" class="sb-product-card__image" loading="lazy" decoding="async" width="400" height="400" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22400%22%3E%3Crect width=%22400%22 height=%22400%22 fill=%22%23FFF9F2%22/%3E%3Ctext x=%22200%22 y=%22200%22 text-anchor=%22middle%22 font-family=%22Baloo 2%22 font-size=%2224%22 fill=%22%233E2723%22%3E🍌%3C/text%3E%3Ctext x=%22200%22 y=%22230%22 text-anchor=%22middle%22 font-family=%22Poppins%22 font-size=%2214%22 fill=%22%23666%22%3E${product.name}%3C/text%3E%3C/svg%3E'">
+          </div>
+          <div class="sb-product-card__content">
+            <span class="sb-product-card__category">${product.category.toUpperCase()}</span>
+            <h3 class="sb-product-card__title">${product.name}</h3>
+            ${pastaOptionsHTML}
+            <div class="sb-product-card__footer">
+              <span class="sb-product-card__price">${formatPrice(product.price)}</span>
+              <button class="sb-btn sb-btn--whatsapp sb-btn--sm" onclick="addToCart(${product.id})">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M12 4a1 1 0 011 1v6h6a1 1 0 110 2h-6v6a1 1 0 11-2 0v-6H5a1 1 0 110-2h6V5a1 1 0 011-1z"/></svg>
+                Tambah
+              </button>
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // ============================================================
+    // RENDER FUNCTIONS
+    // ============================================================
+    function renderBestSeller() {
+      document.getElementById('best-seller-grid').innerHTML = products
+        .filter(p => bestSellerIds.includes(p.id))
+        .map(p => createProductCardHTML(p)).join('');
+    }
+
+    function renderAllProducts() {
+      document.getElementById('product-grid').innerHTML = products.map(p => createProductCardHTML(p)).join('');
+    }
+
+    // ============================================================
+    // FILTERING & SEARCH
+    // ============================================================
+    let filterTimeout;
+
+    function performFiltering() {
+      const activeFilter = document.querySelector('.sb-menu__filter-chip--active')?.dataset.filter || 'all';
+      const query = document.querySelector('.sb-menu__search')?.value.toLowerCase().trim() || '';
+      const cards = document.querySelectorAll('#product-grid .sb-product-card');
+      const emptyState = document.querySelector('.sb-menu__empty-state');
+      let shownCount = 0;
+
+      cards.forEach(card => {
+        const title = card.querySelector('.sb-product-card__title').textContent.toLowerCase();
+        const category = card.dataset.category || '';
+        const isBestseller = card.dataset.bestseller === 'true';
+        const matchesQuery = title.includes(query);
+        const matchesCategory = activeFilter === 'all' || category === activeFilter || (activeFilter === 'bestseller' && isBestseller);
+
+        if (matchesQuery && matchesCategory) {
+          card.style.display = 'flex';
+          card.classList.remove('sb-product-card--hidden');
+          shownCount++;
+        } else {
+          card.classList.add('sb-product-card--hidden');
+          setTimeout(() => { if (card.classList.contains('sb-product-card--hidden')) card.style.display = 'none'; }, 300);
+        }
+      });
+
+      if (shownCount === 0) {
+        emptyState.style.display = 'block';
+        setTimeout(() => emptyState.classList.add('sb-menu__empty-state--visible'), 50);
+      } else {
+        emptyState.classList.remove('sb-menu__empty-state--visible');
+        setTimeout(() => { if (!emptyState.classList.contains('sb-menu__empty-state--visible')) emptyState.style.display = 'none'; }, 300);
+      }
+    }
+
+    function showSkeletonAndFilter() {
+      const grid = document.getElementById('product-grid');
+      const cards = grid.querySelectorAll('.sb-product-card');
+      const emptyState = document.querySelector('.sb-menu__empty-state');
+      cards.forEach(c => c.style.display = 'none');
+      emptyState.classList.remove('sb-menu__empty-state--visible');
+      emptyState.style.display = 'none';
+
+      const skeletonHTML = `<div class="sb-product-card-skeleton"><div class="sb-product-card-skeleton__image"></div><div class="sb-product-card-skeleton__content"><div class="sb-product-card-skeleton__category"></div><div class="sb-product-card-skeleton__title"></div><div class="sb-product-card-skeleton__footer"><div class="sb-product-card-skeleton__price"></div><div class="sb-product-card-skeleton__btn"></div></div></div></div>`;
+      const container = document.createElement('div');
+      container.className = 'sb-skeleton-container';
+      container.style.display = 'contents';
+      container.innerHTML = Array(4).fill(skeletonHTML).join('');
+      grid.appendChild(container);
+      setTimeout(() => { container.remove(); performFiltering(); }, 600);
+    }
+
+    // ============================================================
+    // PASTA SELECTION (with toast feedback)
+    // ============================================================
+    document.addEventListener('click', function(e) {
+      const btn = e.target.closest('.sb-product-card__pasta-btn');
+      if (btn) {
+        const parent = btn.closest('.sb-product-card__pasta-select');
+        parent.querySelectorAll('.sb-product-card__pasta-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        const productName = btn.closest('.sb-product-card').querySelector('.sb-product-card__title').textContent;
+        showToast(`✅ Pasta ${btn.dataset.pasta} dipilih untuk ${productName}`);
+      }
+    });
+
+    // ============================================================
+    // REVEAL ON SCROLL
+    // ============================================================
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.addEventListener('DOMContentLoaded', function() {
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+    });
+
+    // ============================================================
+    // EVENT LISTENERS
+    // ============================================================
+    document.addEventListener('DOMContentLoaded', function() {
+      renderBestSeller();
+      renderAllProducts();
+      updateCartUI();
+
+      // Navbar scroll
+      const navbar = document.querySelector('.sb-navbar');
+      window.addEventListener('scroll', () => navbar.classList.toggle('sb-navbar--scrolled', window.scrollY > 20));
+
+      // Hamburger menu
+      const toggleBtn = document.querySelector('.sb-navbar__toggle');
+      const navMenu = document.querySelector('.sb-navbar__menu');
+      toggleBtn.addEventListener('click', function() {
+        const isOpen = this.classList.contains('sb-navbar__toggle--open');
+        this.classList.toggle('sb-navbar__toggle--open');
+        navMenu.classList.toggle('sb-navbar__menu--open');
+        this.setAttribute('aria-expanded', !isOpen);
+        document.body.style.overflow = isOpen ? '' : 'hidden';
+      });
+
+      document.querySelectorAll('.sb-navbar__link').forEach(link => {
+        link.addEventListener('click', () => {
+          toggleBtn.classList.remove('sb-navbar__toggle--open');
+          navMenu.classList.remove('sb-navbar__menu--open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+
+      document.addEventListener('click', function(e) {
+        if (navMenu.classList.contains('sb-navbar__menu--open') && 
+            !navMenu.contains(e.target) && 
+            !toggleBtn.contains(e.target)) {
+          toggleBtn.classList.remove('sb-navbar__toggle--open');
+          navMenu.classList.remove('sb-navbar__menu--open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // Coming soon buttons
+      document.querySelectorAll('.sb-btn--coming-soon').forEach(btn => {
+        btn.addEventListener('click', function(e) { 
+          e.preventDefault(); 
+          e.stopPropagation();
+          showToast('Fitur ini akan segera tersedia'); 
+        });
+      });
+
+      // Ripple effect
+      document.querySelectorAll('.sb-btn:not(.sb-btn--coming-soon)').forEach(btn => {
+        btn.addEventListener('click', function(e) {
+          const rect = this.getBoundingClientRect();
+          const ripple = document.createElement('span');
+          ripple.className = 'sb-ripple';
+          const size = Math.max(rect.width, rect.height);
+          ripple.style.width = ripple.style.height = size + 'px';
+          ripple.style.left = (e.clientX - rect.left - size/2) + 'px';
+          ripple.style.top = (e.clientY - rect.top - size/2) + 'px';
+          this.appendChild(ripple);
+          setTimeout(() => ripple.remove(), 600);
+        });
+      });
+
+      // Section observer
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('sb-visible', 'sb-section--visible');
+            sectionObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      document.querySelectorAll('.sb-section').forEach(s => sectionObserver.observe(s));
+
+      // Filter chips
+      document.querySelectorAll('.sb-menu__filter-chip').forEach(chip => {
+        chip.addEventListener('click', function() {
+          document.querySelectorAll('.sb-menu__filter-chip').forEach(c => {
+            c.classList.remove('sb-menu__filter-chip--active');
+            c.setAttribute('aria-selected', 'false');
+          });
+          this.classList.add('sb-menu__filter-chip--active');
+          this.setAttribute('aria-selected', 'true');
+          showSkeletonAndFilter();
+        });
+      });
+
+      // Search with debounce
+      const searchInput = document.querySelector('.sb-menu__search');
+      searchInput.addEventListener('input', function() {
+        clearTimeout(filterTimeout);
+        filterTimeout = setTimeout(performFiltering, 300);
+      });
+
+      // Reviews scroll
+      const slider = document.querySelector('.sb-reviews__slider');
+      let autoTimer, isDragging = false, startX, scrollLeft;
+      const startAuto = () => {
+        if (autoTimer) clearInterval(autoTimer);
+        autoTimer = setInterval(() => {
+          const card = slider.querySelector('.sb-reviews__card');
+          if (!card) return;
+          const step = card.offsetWidth + 16;
+          const max = slider.scrollWidth - slider.clientWidth;
+          if (slider.scrollLeft >= max - 10) {
+            slider.scrollTo({ left: 0, behavior: 'smooth' });
+          } else {
+            slider.scrollBy({ left: step, behavior: 'smooth' });
+          }
+        }, 3500);
+      };
+      const stopAuto = () => { if (autoTimer) { clearInterval(autoTimer); autoTimer = null; } };
+      
+      slider.addEventListener('touchstart', function(e) {
+        stopAuto();
+        isDragging = true;
+        startX = e.touches[0].pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+        slider.classList.add('sb-reviews__slider--active');
+      }, { passive: true });
+      
+      slider.addEventListener('touchmove', function(e) {
+        if (!isDragging) return;
+        const x = e.touches[0].pageX - slider.offsetLeft;
+        slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      }, { passive: true });
+      
+      slider.addEventListener('touchend', function() {
+        isDragging = false;
+        slider.classList.remove('sb-reviews__slider--active');
+        setTimeout(startAuto, 2000);
+      }, { passive: true });
+      
+      slider.addEventListener('mouseenter', stopAuto);
+      slider.addEventListener('mouseleave', startAuto);
+      slider.addEventListener('mousedown', function(e) {
+        isDragging = true;
+        slider.classList.add('sb-reviews__slider--active');
+        startX = e.pageX - slider.offsetLeft;
+        scrollLeft = slider.scrollLeft;
+      });
+      slider.addEventListener('mouseup', function() {
+        isDragging = false;
+        slider.classList.remove('sb-reviews__slider--active');
+      });
+      slider.addEventListener('mouseleave', function() {
+        isDragging = false;
+        slider.classList.remove('sb-reviews__slider--active');
+      });
+      slider.addEventListener('mousemove', function(e) {
+        if (!isDragging) return;
+        e.preventDefault();
+        const x = e.pageX - slider.offsetLeft;
+        slider.scrollLeft = scrollLeft - (x - startX) * 1.5;
+      });
+      startAuto();
+
+      // FAQ Accordion
+      document.querySelectorAll('.sb-faq__item').forEach(item => {
+        const trigger = item.querySelector('.sb-faq__trigger');
+        trigger.addEventListener('click', function() {
+          const isOpen = item.classList.contains('sb-faq__item--open');
+          document.querySelectorAll('.sb-faq__item').forEach(i => {
+            i.classList.remove('sb-faq__item--open');
+            i.querySelector('.sb-faq__trigger').setAttribute('aria-expanded', 'false');
+          });
+          if (!isOpen) {
+            item.classList.add('sb-faq__item--open');
+            this.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+
+      // Handle resize for mobile menu
+      const handleResize = () => {
+        if (window.innerWidth >= 768 && navMenu.classList.contains('sb-navbar__menu--open')) {
+          navMenu.classList.remove('sb-navbar__menu--open');
+          toggleBtn.classList.remove('sb-navbar__toggle--open');
+          toggleBtn.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        }
+      };
+      window.addEventListener('resize', handleResize);
+    });
+  </script>
+</body>
+</html>
