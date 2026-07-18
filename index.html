@@ -368,9 +368,6 @@
       text-transform: uppercase;
       letter-spacing: 2px;
       color: var(--color-secondary);
-      opacity: 0;
-      transform: translateY(20px);
-      animation: hero-fade-up var(--duration-slow) var(--ease-out) forwards;
     }
     .sb-hero__title {
       font-family: var(--font-heading);
@@ -378,18 +375,12 @@
       line-height: 1.1;
       color: var(--color-primary);
       font-weight: 800;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: hero-fade-up var(--duration-slow) var(--ease-out) 150ms forwards;
     }
     .sb-hero__title span { color: var(--color-accent-dark); }
     .sb-hero__desc {
       font-size: clamp(0.9rem, 2.5vw, 1.1rem);
       color: var(--color-text-secondary);
       max-width: 100%;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: hero-fade-up var(--duration-slow) var(--ease-out) 300ms forwards;
     }
     .sb-hero__actions {
       display: flex;
@@ -397,9 +388,6 @@
       flex-wrap: wrap;
       margin-top: 4px;
       justify-content: center;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: hero-fade-up var(--duration-slow) var(--ease-out) 450ms forwards;
     }
     .sb-hero__delivery {
       display: flex;
@@ -407,9 +395,6 @@
       flex-wrap: wrap;
       margin-top: 4px;
       justify-content: center;
-      opacity: 0;
-      transform: translateY(30px);
-      animation: hero-fade-up var(--duration-slow) var(--ease-out) 600ms forwards;
     }
     .sb-hero__image-container { 
       display: flex; 
@@ -419,6 +404,7 @@
       width: 100%;
       max-width: 500px;
       margin: 0 auto;
+      animation: float 4s ease-in-out 0.8s infinite;
     }
     .sb-hero__image {
       max-width: 100%;
@@ -426,13 +412,7 @@
       border-radius: var(--radius-2xl);
       box-shadow: var(--shadow-xl);
       border: 1px solid var(--color-border);
-      opacity: 0;
-      transform: translateY(50px) scale(0.95);
-      will-change: transform, opacity;
-      animation: hero-image-rise var(--duration-slower) var(--ease-spring) 300ms forwards;
     }
-    @keyframes hero-fade-up { to { opacity: 1; transform: translateY(0); } }
-    @keyframes hero-image-rise { to { opacity: 1; transform: translateY(0) scale(1); } }
 
     .sb-hero__floating-badge {
       position: absolute;
@@ -445,15 +425,67 @@
       display: flex;
       align-items: center;
       gap: 6px;
-      animation: float-badge 3s ease-in-out infinite;
       z-index: 2;
       white-space: nowrap;
     }
-    .sb-hero__floating-badge--1 { top: 5%; right: 0%; animation-delay: 0s; }
-    .sb-hero__floating-badge--2 { bottom: 10%; left: 0%; animation-delay: 1.5s; }
+    .sb-hero__floating-badge--1 { top: 5%; right: 0%; }
+    .sb-hero__floating-badge--2 { bottom: 10%; left: 0%; }
+
+    /* ===== MODERN ENTRANCE ANIMATIONS (Setara Framer Motion) ===== */
+    @keyframes fadeUp {
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeRight {
+      0% { opacity: 0; transform: translateX(50px); }
+      100% { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes springPop {
+      0% { opacity: 0; transform: scale(0); }
+      70% { opacity: 1; transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
     @keyframes float-badge {
       0%, 100% { transform: translateY(0); }
       50% { transform: translateY(-8px); }
+    }
+
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      will-change: opacity, transform;
+    }
+    .animate-fade-up.in-view {
+      animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-fade-right {
+      opacity: 0;
+      transform: translateX(50px);
+      will-change: opacity, transform;
+    }
+    .animate-fade-right.in-view {
+      animation: fadeRight 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    .animate-spring {
+      opacity: 0;
+      transform: scale(0);
+      will-change: opacity, transform;
+    }
+    .animate-spring.in-view {
+      animation: springPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+    }
+
+    .sb-hero__floating-badge--1.animate-spring.in-view {
+      animation: springPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float-badge 3s ease-in-out 0.8s infinite;
+    }
+    .sb-hero__floating-badge--2.animate-spring.in-view {
+      animation: springPop 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards, float-badge 3s ease-in-out 2.3s infinite;
     }
 
     /* ===== SECTION HEADER ===== */
@@ -1753,7 +1785,7 @@
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
       .sb-drip { transform: translateY(0) !important; opacity: 1 !important; }
-      .sb-section, .sb-product-card, .sb-hero__tagline, .sb-hero__title, .sb-hero__desc, .sb-hero__actions, .sb-hero__delivery, .sb-hero__image { 
+      .sb-section, .sb-product-card, .sb-hero__tagline, .sb-hero__title, .sb-hero__desc, .sb-hero__actions, .sb-hero__delivery, .sb-hero__image, .animate-fade-up, .animate-fade-right, .animate-spring { 
         transform: none !important; 
         opacity: 1 !important; 
         animation: none !important; 
@@ -1844,16 +1876,16 @@
     <section class="sb-hero">
       <div class="sb-hero__grid">
         <div class="sb-hero__content">
-          <span class="sb-hero__tagline">✦ The Ultimate Premium Dessert ✦</span>
-          <h1 class="sb-hero__title">Melted Premium <span>Stick Banana</span></h1>
-          <p class="sb-hero__desc">
+          <span class="sb-hero__tagline animate-fade-up" style="transition-delay: 100ms; animation-delay: 100ms;">✦ The Ultimate Premium Dessert ✦</span>
+          <h1 class="sb-hero__title animate-fade-up" style="transition-delay: 200ms; animation-delay: 200ms;">Melted Premium <span>Stick Banana</span></h1>
+          <p class="sb-hero__desc animate-fade-up" style="transition-delay: 300ms; animation-delay: 300ms;">
             Manjakan lidahmu dengan frozen banana stick premium yang dicelup ke dalam cokelat Belgia lumer dan diberi topping pasta pilihan. Nikmati sensasi creamy dan segar di setiap gigitan!
           </p>
-          <div class="sb-hero__actions">
+          <div class="sb-hero__actions animate-fade-up" style="transition-delay: 450ms; animation-delay: 450ms;">
             <a href="#menu" class="sb-btn sb-btn--accent">Lihat Menu</a>
             <button class="sb-btn sb-btn--outline sb-btn--whatsapp" onclick="openOrderModal()">Pesan WhatsApp</button>
           </div>
-          <div class="sb-hero__delivery">
+          <div class="sb-hero__delivery animate-fade-up" style="transition-delay: 600ms; animation-delay: 600ms;">
             <button class="sb-btn sb-btn--delivery sb-btn--coming-soon" onclick="showToast('Link GrabFood akan segera tersedia')">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
               GrabFood
@@ -1865,9 +1897,9 @@
           </div>
         </div>
         <div class="sb-hero__image-container">
-          <img src="/images/hero-stickbanana.jpg" alt="Stick Banana premium dessert with chocolate drizzle" class="sb-hero__image" width="600" height="600" loading="eager" fetchpriority="high" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23FFF9F2%22/%3E%3Ctext x=%22300%22 y=%22300%22 text-anchor=%22middle%22 font-family=%22Baloo 2%22 font-size=%2232%22 fill=%22%233E2723%22%3E🍌 Stick Banana%3C/text%3E%3C/svg%3E'">
-          <div class="sb-hero__floating-badge sb-hero__floating-badge--1">⭐ Best Seller</div>
-          <div class="sb-hero__floating-badge sb-hero__floating-badge--2">🍫 10+ Varian</div>
+          <img src="/images/hero-stickbanana.jpg" alt="Stick Banana premium dessert with chocolate drizzle" class="sb-hero__image animate-fade-right" style="transition-delay: 300ms; animation-delay: 300ms;" width="600" height="600" loading="eager" fetchpriority="high" onerror="this.onerror=null; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22600%22%3E%3Crect width=%22600%22 height=%22600%22 fill=%22%23FFF9F2%22/%3E%3Ctext x=%22300%22 y=%22300%22 text-anchor=%22middle%22 font-family=%22Baloo 2%22 font-size=%2232%22 fill=%22%233E2723%22%3E🍌 Stick Banana%3C/text%3E%3C/svg%3E'">
+          <div class="sb-hero__floating-badge sb-hero__floating-badge--1 animate-spring" style="transition-delay: 600ms; animation-delay: 600ms;">⭐ Best Seller</div>
+          <div class="sb-hero__floating-badge sb-hero__floating-badge--2 animate-spring" style="transition-delay: 750ms; animation-delay: 750ms;">🍫 10+ Varian</div>
         </div>
       </div>
     </section>
@@ -2875,7 +2907,7 @@
     });
 
     // ============================================================
-    // REVEAL ON SCROLL
+    // REVEAL ON SCROLL & ENTRANCE ANIMATIONS (.animate-*)
     // ============================================================
     const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -2886,8 +2918,18 @@
       });
     }, { threshold: 0.15 });
 
+    const animateObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
     document.addEventListener('DOMContentLoaded', function() {
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+      document.querySelectorAll('[class*="animate-"]').forEach(el => animateObserver.observe(el));
     });
 
     // ============================================================
