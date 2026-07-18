@@ -706,34 +706,76 @@
       gap: 16px; 
       margin-bottom: 32px; 
     }
-    .sb-menu__search-container { 
-      width: 100%; 
-      max-width: 400px; 
-      position: relative; 
+    /* ===== SEARCH BAR — GLASSMORPHISM + SPRING EXPAND ===== */
+    .sb-menu__search-container {
+      position: relative;
+      width: 50px;
+      height: 50px;
+      border-radius: var(--radius-full);
+      background: rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 4px 20px rgba(62, 39, 35, 0.08), inset 0 1px 0 rgba(255,255,255,0.5);
+      transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  box-shadow var(--duration-normal) var(--ease-smooth),
+                  background var(--duration-normal) var(--ease-smooth);
+      cursor: pointer;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .sb-menu__search-container:hover,
+    .sb-menu__search-container:focus-within {
+      width: 350px;
+      background: rgba(255, 255, 255, 0.65);
+      box-shadow: 0 6px 30px rgba(62, 39, 35, 0.12), inset 0 1px 0 rgba(255,255,255,0.7);
+      cursor: text;
     }
     .sb-menu__search {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      padding: 12px 16px 12px 44px;
-      border: 1px solid var(--color-border);
+      height: 100%;
+      padding: 0 16px 0 46px;
+      border: none;
       border-radius: var(--radius-full);
-      background-color: var(--color-white);
+      background: transparent;
       color: var(--color-primary);
-      font-size: clamp(0.85rem, 2vw, 0.95rem);
-      transition: border-color var(--duration-normal) var(--ease-smooth), box-shadow var(--duration-normal) var(--ease-smooth);
-      min-height: var(--touch-target);
+      font-size: clamp(0.82rem, 2vw, 0.93rem);
+      font-family: var(--font-body);
+      opacity: 0;
+      transition: opacity 0.18s ease 0.15s;
+      min-height: 50px;
+      white-space: nowrap;
     }
-    .sb-menu__search:focus { 
-      outline: none; 
-      border-color: var(--color-primary); 
-      box-shadow: var(--shadow-sm); 
+    .sb-menu__search-container:hover .sb-menu__search,
+    .sb-menu__search-container:focus-within .sb-menu__search {
+      opacity: 1;
+    }
+    .sb-menu__search:focus {
+      outline: none;
+    }
+    .sb-menu__search::placeholder {
+      color: var(--color-text-secondary);
+      opacity: 0.75;
     }
     .sb-menu__search-icon {
       position: absolute;
-      left: 16px;
+      left: 50%;
       top: 50%;
-      transform: translateY(-50%);
+      transform: translate(-50%, -50%);
       pointer-events: none;
       color: var(--color-secondary);
+      transition: left 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                  transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      flex-shrink: 0;
+      z-index: 1;
+    }
+    .sb-menu__search-container:hover .sb-menu__search-icon,
+    .sb-menu__search-container:focus-within .sb-menu__search-icon {
+      left: 16px;
+      transform: translateY(-50%);
     }
     .sb-menu__filters { 
       display: flex; 
@@ -1555,8 +1597,12 @@
       .sb-cta__banner { padding: 36px 20px; border-radius: var(--radius-xl); }
       .sb-menu__filters { gap: 6px; }
       .sb-menu__filter-chip { padding: 6px 12px; font-size: 0.7rem; min-height: 32px; }
-      .sb-menu__search { padding: 10px 12px 10px 36px; font-size: 0.85rem; min-height: 36px; }
-      .sb-menu__search-icon { left: 12px; width: 16px; height: 16px; }
+      .sb-menu__search-container:hover,
+      .sb-menu__search-container:focus-within { width: min(310px, 80vw); }
+      .sb-menu__search { padding: 0 12px 0 40px; font-size: 0.85rem; }
+      .sb-menu__search-icon { width: 16px; height: 16px; }
+      .sb-menu__search-container:hover .sb-menu__search-icon,
+      .sb-menu__search-container:focus-within .sb-menu__search-icon { left: 13px; }
       .sb-section-header { margin-bottom: 24px; }
       .sb-section-header__title { font-size: 1.4rem; }
       .sb-cta__delivery { flex-direction: column; align-items: center; }
@@ -1830,8 +1876,11 @@
       </div>
 
       <div class="sb-menu__controls">
-        <div class="sb-menu__search-container">
-          <svg class="sb-menu__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="sb-menu__search-container" role="search" title="Cari menu">
+          <!-- Heroicons: magnifying-glass (solid) -->
+          <svg class="sb-menu__search-icon icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"/>
+          </svg>
           <input type="text" class="sb-menu__search" placeholder="Cari varian pisang favoritmu..." aria-label="Cari Menu">
         </div>
         <div class="sb-menu__filters" role="tablist">
@@ -1864,8 +1913,11 @@
       </div>
 
       <div class="sb-menu__controls">
-        <div class="sb-menu__search-container">
-          <svg class="sb-menu__search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        <div class="sb-menu__search-container" role="search" title="Cari menu baru">
+          <!-- Heroicons: magnifying-glass (solid) -->
+          <svg class="sb-menu__search-icon icon-svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path fill-rule="evenodd" d="M10.5 3.75a6.75 6.75 0 1 0 0 13.5 6.75 6.75 0 0 0 0-13.5ZM2.25 10.5a8.25 8.25 0 1 1 14.59 5.28l4.69 4.69a.75.75 0 1 1-1.06 1.06l-4.69-4.69A8.25 8.25 0 0 1 2.25 10.5Z" clip-rule="evenodd"/>
+          </svg>
           <input type="text" class="sb-menu__search" placeholder="Cari menu baru favoritmu..." aria-label="Cari Menu Baru">
         </div>
         <div class="sb-menu__filters" role="tablist">
